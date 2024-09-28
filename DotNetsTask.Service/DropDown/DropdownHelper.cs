@@ -50,7 +50,7 @@ namespace DotNetsTask.Service.DropDown
 			var selectList = new List<SelectListItem> { selectItem }
 				.Concat(issuedBooks.Select(issue => new SelectListItem
 				{
-					Text = issue.Book.Title, // Assuming 'Title' is the property for the book's name
+					Text = issue.Book.Subject, // Assuming 'Title' is the property for the book's name
 					Value = issue.IssueId.ToString() // Assuming 'IssueId' is the property of the issued book
 				}))
 				.ToList();
