@@ -1,0 +1,89 @@
+﻿@model DotNetTask.Dto.ViewModel.BookDto
+@{
+    ViewData["Title"] = "BookList";
+    Layout = "~/Areas/Admin/Views/Shared/_adminlayout.cshtml";
+}
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    @section notification {
+        <partial name="_Notification.cshtml" />
+    }
+    <!-- Page Content -->
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title"> Book List</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Book List</li>
+                    </ul>
+                </div>
+                <div class="col-auto float-end ms-auto">
+                    <a href="/Admin/Library/AddBook" class="btn add-btn"><i class="fa-solid fa-plus"></i> Add Book</a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>Sr.Nu.</th>
+                                <th>Subject</th>
+                                <th>Book Title</th>
+                                <th>Book Author</th>
+                                <th>Book Isbn</th>
+                                <th>Book Genration</th>
+                                <th>Book Published Year</th>
+                                <th>Book Copy,s</th>
+                                
+                                
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model?.BookList != null && Model.BookList.Any()) // Null check and empty check
+                            {
+                                int i = 1; // Start with 1 for the row number
+                                foreach (var item in Model.BookList)
+                                {
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@item.Subject</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Author</td>
+                                        <td>@item.Isbn</td>
+                                        <td>@item.Genre</td>
+                                        <td>@item.PublishedYear</td>
+                                        <td>@item.Quantity</td>
+                                      
+                                        <td>
+                                            <a href="/Admin/Library/AddBook?id=@item.BookId" class="dropdown-item"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
+                                            <a href="/Admin/Library/DeleteBooks?id=@item.BookId" class="dropdown-item"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
+                                        </td>
+                                    </tr>
+                                    i++; // Increment the counter
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="9" class="text-center">No jobs available</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+

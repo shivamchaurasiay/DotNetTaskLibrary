@@ -1,0 +1,92 @@
+﻿@using System.Data;
+@model DotNetTask.Dto.ViewModel.ReturnDto
+@{
+    ViewData["Title"] = "ReturnBook";
+    Layout = "~/Areas/Admin/Views/Shared/_adminlayout.cshtml";
+}
+
+
+<div class="page-wrapper">
+	@section notification {
+		<partial name="_Notification.cshtml" />
+	}
+	<div class="content container-fluid">
+		<div class="row">
+			<div class="col-xl-12 d-flex">
+				<div class="card flex-fill">
+					<div class="card-header">
+						<h4 class="card-title mb-0">Return Book</h4>
+					</div>
+					<div class="card-body">
+						<form asp-area="Admin" asp-action="ReturnBook" asp-controller="Library" method="post" enctype="multipart/form-data">
+
+							<div class="row">
+								<div class="col-md-4">
+									<div class="input-block mb-3">
+										<label class="col-form-label">Select Student</label>
+										<select class="select form-control" asp-for="UserId" asp-items="@((IEnumerable<SelectListItem>)ViewBag.Students)" onchange="GetBookByStudentId(this)">
+										</select>
+										<span asp-validation-for="UserId" class="text-danger"></span>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="input-block mb-3">
+										<label class="col-form-label">Select Book</label>
+										<select class="select form-control" asp-for="IssueId">
+										</select>
+										<span asp-validation-for="IssueId" class="text-danger"></span>
+									</div>
+								</div>
+
+								<div class="col-md-4">
+									<div class="input-block mb-3">
+										<label class="col-form-label">Return Date</label>
+										<input type="text" name="ReturnDate" asp-for="ReturnDate" class="form-control datetimepicker">
+										<span asp-validation-for="ReturnDate" class="text-danger"></span>
+									</div>
+								</div>
+								
+							</div>
+
+
+
+							<div class="submit-section">
+								<button type="submit" class="btn btn-primary submit-btn">Return Book</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+@section scripts {
+
+	<script type="text/javascript">
+		function GetBookByStudentId(obj) {
+			var studentId = $(obj).val();
+			$.post("/Admin/Library/GetBookByStudentId", {
+				StudentId: studentId
+			}, function (data) {
+				var dropdown = $("#IssueId");
+				var innerHtml = DindDropDownList(eval(data), dropdown)
+				$("#IssueId").html(innerHtml);
+				
+			})
+		}
+		function DindDropDownList(data, dropdown) {
+			var option = "";
+			for (var i = 0; i < data.length; i++) {
+				option += "<option value=" + data[i].value + ">" + data[i].text + "</option>";
+
+			}
+			dropdown.html(option);
+		}
+
+	</script>
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>

@@ -1,0 +1,92 @@
+﻿@model DotNetTask.Dto.ViewModel.DashboardDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminlayout.cshtml";
+}
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+
+	<!-- Page Content -->
+	<div class="content container-fluid">
+
+		<!-- Page Header -->
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3 class="page-title">Welcome Sir & Mam!</h3>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item active">Library Dashboard</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Header -->
+
+		<div class="row">
+		
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon"><i class="fa-solid fa-user"></i></span>
+						<div class="dash-widget-info">
+							<h3>@Model.TotaslStudentCount</h3>
+							<span>Total Student</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon">
+							<i class="fa-regular fa-book"></i>
+						</span>
+						<div class="dash-widget-info">
+							<h3>@Model.TotalAddBookCount</h3>
+							<span>Total Book</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon"><i class="fa-solid fa-book-reader"></i></span>
+						<div class="dash-widget-info">
+							<h3>@Model.TotalIssueBookCount</h3>
+							<span>Total Issue Book</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon"><i class="fa-solid fa-cubes"></i></span>
+						<div class="dash-widget-info">
+							<h3>@Model.TotalReturnBookCount</h3>
+							<span>Total Return Book</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon"><i class="fa-solid fa-book-open"></i></span>
+						<div class="dash-widget-info">
+							<h3>@Model.TotalPersentIssueBookCount</h3>
+							<span>Persent Time Issue Book</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+
+	

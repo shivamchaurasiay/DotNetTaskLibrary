@@ -1,0 +1,79 @@
+﻿@using System.Data;
+@model DotNetTask.Dto.ViewModel.IssuedBookDto
+@{
+    ViewData["Title"] = "IssueBook";
+    Layout = "~/Areas/Admin/Views/Shared/_adminlayout.cshtml";
+}
+
+<div class="page-wrapper">
+	@section notification {
+		<partial name="_Notification.cshtml" />
+	}
+	<div class="content container-fluid">
+		<div class="row">
+			<div class="col-xl-12 d-flex">
+				<div class="card flex-fill">
+					<div class="card-header">
+						<h4 class="card-title mb-0">Issue Book</h4>
+					</div>
+					<div class="card-body">
+						<form asp-area="Admin" asp-action="IssueBook" asp-controller="Library" method="post" enctype="multipart/form-data">
+							
+							<div class="row">
+								<div class="col-md-4">
+									<div class="input-block mb-3">
+										<label class="col-form-label">Select Student</label>
+										<select class="select form-control" asp-for="UserId" asp-items="@((IEnumerable<SelectListItem>)ViewBag.Students)">
+										
+										</select>
+										<span asp-validation-for="UserId" class="text-danger"></span>
+									</div>
+								</div>
+									<div class="col-md-4">
+										<div class="input-block mb-3">
+											<label class="col-form-label">Mobile Nu.</label>
+										<input class="form-control" type="text" asp-for="MobileNo">
+										<span asp-validation-for="MobileNo" class="text-danger"></span>
+										</div>
+									</div>
+								<div class="col-md-4">
+									<div class="input-block mb-3">
+										<label class="col-form-label">Select Book</label>
+										<select class="select form-control" asp-for="BookId" asp-items="@((IEnumerable<SelectListItem>)ViewBag.Books)">
+										</select>
+										<span asp-validation-for="BookId" class="text-danger"></span>
+									</div>
+								</div>
+								
+									<div class="col-md-4">
+										<div class="input-block mb-3">
+											<label class="col-form-label">Issue Date</label>
+										<input type="text" name="IssueDate" asp-for="IssueDate" class="form-control datetimepicker">
+										<span asp-validation-for="IssueDate" class="text-danger"></span>
+										</div>
+								</div>
+									<div class="col-md-4">
+										<div class="input-block mb-3">
+										<label class="col-form-label"> Expected Return Date</label>
+										<input type="text" name="ExpectedReturnDate" asp-for="ExpectedReturnDate" class="form-control datetimepicker">
+										<span asp-validation-for="ExpectedReturnDate" class="text-danger"></span>
+										</div>
+									</div>
+								</div>
+							
+
+
+								<div class="submit-section">
+									<button type="submit" class="btn btn-primary submit-btn">Issue Book</button>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+

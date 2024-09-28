@@ -1,0 +1,91 @@
+﻿@model DotNetTask.Dto.ViewModel.IssuedBookDto
+@{
+    ViewData["Title"] = "IssuedBookList";
+    Layout = "~/Areas/Admin/Views/Shared/_adminlayout.cshtml";
+}
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    @section notification {
+        <partial name="_Notification.cshtml" />
+    }
+    <!-- Page Content -->
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title"> Issue Books</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Issue Books</li>
+                    </ul>
+                </div>
+                <div class="col-auto float-end ms-auto">
+                    <a href="/Admin/Library/IssueBook" class="btn add-btn"><i class="fa-solid fa-plus"></i> Issue Books</a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>Sr.Nu.</th>
+                                <th>Student Name</th>
+                                <th> Subject</th>
+                                <th>Book Title</th>
+                                <th>Book Isbn</th>
+
+                                <th>Issue Date</th>
+                                <th>Expected Return Date</th>
+                                <th>Mobile No.</th>
+                                
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model?.IssuedBookList != null && Model.IssuedBookList.Any()) // Null check and empty check
+                            {
+                                int i = 1; // Start with 1 for the row number
+                                foreach (var item in Model.IssuedBookList)
+                                {
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@item.User?.Name</td>
+                                        <td>@item.Book?.Subject</td>
+                                        <td>@item.Book?.Title</td>
+                                        <td>@item.Book?.Isbn</td>
+                                        <td>@item.IssueDate</td>
+                                        <td>@item.ExpectedReturnDate</td>
+                                        <td>@item.MobileNo</td>
+                                      
+                                    </tr>
+                                    i++; // Increment the counter
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="9" class="text-center">No data available</td>
+                                </tr>
+                            }
+                        </tbody>
+
+                     
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

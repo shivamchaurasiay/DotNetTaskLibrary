@@ -1,0 +1,141 @@
+﻿@model DotNetTask.Dto.ViewModel.FilterBookDto
+@{
+    ViewData["Title"] = "SearchBook";
+    Layout = "~/Areas/Admin/Views/Shared/_adminlayout.cshtml";
+}
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    @section notification {
+        <partial name="_Notification.cshtml" />
+    }
+    <!-- Page Content -->
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Search Book</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Search Book</li>
+                    </ul>
+                </div>
+               
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-xl-12 d-flex">
+                <div class="card flex-fill">
+
+                    <div class="card-body">
+                        <form asp-action="SearchBook" asp-area="Admin" asp-controller="Library" method="post" enctype="multipart/form-data">
+                            <input class="form-control" type="hidden" data-val="true" data-val-required="The BookId field is required." id="BookId" name="BookId" value="">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-block mb-3">
+                                        <label class="col-form-label">Subject</label>
+                                        <input class="form-control" type="text" id="Subject" name="Subject" value="">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-block mb-3">
+                                        <label class="col-form-label">Book Title</label>
+                                        <input class="form-control" type="text"  id="Title" name="Title" value="">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-block mb-3">
+                                        <label class="col-form-label">Book Author</label>
+                                        <input class="form-control" type="text" id="Author" name="Author" value="">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-block mb-3">
+                                        <label class="col-form-label">Book Genration</label>
+                                        <input class="form-control" type="text" id="Genre" name="Genre" value="">
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-block mb-3">
+                                        <label class="col-form-label">Book Isbn</label>
+                                        <input class="form-control" type="text" id="Isbn" name="Isbn" value="">
+                                       
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            
+
+
+                            <div class="submit-section">
+                                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                            </div>
+                          
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>Sr.Nu.</th>
+                                <th>Subject</th>
+                                <th>Book Title</th>
+                                <th>Book Author</th>
+                                <th>Book Isbn</th>
+                                <th>Book Genration</th>
+                                <th>Book Published Year</th>
+                                <th>Book Copy,s</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model?.LstBookFilterData != null && Model.LstBookFilterData.Any()) // Null check and empty check
+                            {
+                                int i = 1; // Start with 1 for the row number
+                                foreach (var item in Model.LstBookFilterData)
+                                {
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@item.Subject</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Author</td>
+                                        <td>@item.Isbn</td>
+                                        <td>@item.Genre</td>
+                                        <td>@item.PublishedYear</td>
+                                        <td>@item.Quantity</td>
+
+                                    
+                                    </tr>
+                                    i++; // Increment the counter
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="9" class="text-center">No jobs available</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
